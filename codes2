@@ -37,7 +37,60 @@ git commit -m “type any message”
 
 
 
-12 question
+normal kubernets
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: nginx-deployment 
+spec: 
+  replicas: 2 
+  selector: 
+    matchLabels: 
+      app: nginx 
+  template: 
+    metadata: 
+      labels: 
+        app: nginx 
+    spec: 
+      containers: 
+      - name: nginx 
+        image: nginx:1.21 
+        ports: 
+        - containerPort: 80
+
+kubectl apply -f nginx-deployment.yaml
+
+kubectl get pods 
+
+kubectl expose deployment nginx-deployment --type=NodePort --name=nginx-service
+
+kubectl get svc 
+
+go to chrom and type the number you get in x place
+localhost:xxxxx
+
+managing and verifying
+kubectl scale deployment nginx-deployment --replicas=4 
+
+kubectl get pods 
+
+delete
+kubectl delete svc nginx-service 
+kubectl delete deployment nginx-deployment
+
+
+
+normal jenkins
+docker pull jenkins/jenkins:lts
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:lts
+docker ps 
+
+go to chrome 
+localhost:8080
+
+
+
+12 question - flask api deploy
 
 App.py
 
@@ -47,6 +100,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return jsonify({"message": "Welcome to the Flask API!"})
+
 
 @app.route('/health')
 def health():
@@ -130,7 +184,7 @@ spec:
     nodePort: 30007
 
 
-13th question
+13th question - ci/cd docker
 steps to Run Flask App Without Installing Python Locally
 1. Write Your Code
 1.	Create a folder for your project (e.g., FlaskApp).
@@ -199,7 +253,7 @@ bash
 Copy code
 docker push your-dockerhub-username/flask-app 
 
-15th
+15th - implement version control
 Create a GitHub Repository and Implement Version Control Tasks: • Set up a repository for a team project. • Create branches for individual modules. • Merge branches with pull requests after code reviews. • Resolve conflicts during branch merging. • Document the workflow using the README file. • Submit the repository link
 Step 1: Set Up a GitHub Repository
 1.	Go to GitHub.
